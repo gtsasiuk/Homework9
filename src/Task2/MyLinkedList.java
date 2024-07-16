@@ -1,18 +1,18 @@
 package Task2;
 
-public class MyLinkedList {
-    private static class Node {
-        Object value;
-        Node next;
-        Node prev;
+public class MyLinkedList<T> {
+    private static class Node<T> {
+        T value;
+        Node<T> next;
+        Node<T> prev;
 
-        Node(Object value) {
+        Node(T value) {
             this.value = value;
         }
     }
 
-    private Node head;
-    private Node tail;
+    private Node<T> head;
+    private Node<T> tail;
     private int size;
 
     public MyLinkedList() {
@@ -21,8 +21,8 @@ public class MyLinkedList {
         size = 0;
     }
 
-    public void add(Object value) {
-        Node newNode = new Node(value);
+    public void add(T value) {
+        Node<T> newNode = new Node<>(value);
         if (size == 0) {
             head = newNode;
             tail = newNode;
@@ -38,7 +38,7 @@ public class MyLinkedList {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Invalid index: " + index);
         }
-        Node currentNode = getNodeAt(index);
+        Node<T> currentNode = getNodeAt(index);
         if (currentNode.prev != null) {
             currentNode.prev.next = currentNode.next;
         } else {
@@ -62,16 +62,15 @@ public class MyLinkedList {
         return size;
     }
 
-
-    public Object get(int index) {
+    public T get(int index) {
         return getNodeAt(index).value;
     }
 
-    private Node getNodeAt(int index) {
+    private Node<T> getNodeAt(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Invalid index: " + index);
         }
-        Node currentNode = head;
+        Node<T> currentNode = head;
         for (int i = 0; i < index; i++) {
             currentNode = currentNode.next;
         }

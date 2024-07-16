@@ -2,7 +2,7 @@ package Task3;
 
 public class MyQueueTest {
     public static void main(String[] args) {
-        MyQueue queue = new MyQueue();
+        MyQueue<String> queue = new MyQueue<>();
 
         queue.add("One");
         queue.add("Two");

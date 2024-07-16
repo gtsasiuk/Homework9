@@ -1,15 +1,15 @@
 package Task1;
 
-public class MyArrayList {
-    private Object[] array;
+public class MyArrayList<T> {
+    private T[] array;
     private int size;
 
     public MyArrayList() {
-        array = new Object[10];
+        array = (T[]) new Object[10];
         size = 0;
     }
 
-    public void add(Object value) {
+    public void add(T value) {
         if (size == array.length) {
             resizeArray();
         }
@@ -39,7 +39,7 @@ public class MyArrayList {
         return size;
     }
 
-    public Object get(int index) {
+    public T get(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Invalid index: " + index);
         }
@@ -48,7 +48,7 @@ public class MyArrayList {
 
     private void resizeArray() {
         int newSize = array.length * 2;
-        Object[] newArray = new Object[newSize];
+        T[] newArray = (T[]) new Object[newSize];
         for (int i = 0; i < size; i++) {
             newArray[i] = array[i];
         }

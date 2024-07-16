@@ -2,7 +2,7 @@ package Task5;
 
 public class MyHashMapTest {
     public static void main(String[] args) {
-        MyHashMap map = new MyHashMap();
+        MyHashMap<String, Object> map = new MyHashMap<>();
 
         map.put("key1", 23);
         map.put("key2", "value2");

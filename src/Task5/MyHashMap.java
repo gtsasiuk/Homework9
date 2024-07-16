@@ -1,33 +1,34 @@
 package Task5;
 
-public class MyHashMap {
-    private static class Node {
-        Object key;
-        Object value;
-        Node next;
+public class MyHashMap<K, V> {
+    private static class Node<K, V> {
+        K key;
+        V value;
+        Node<K, V> next;
 
-        Node(Object key, Object value) {
+        Node(K key, V value) {
             this.key = key;
             this.value = value;
             this.next = null;
         }
     }
 
-    private Node[] table;
+    private Node<K, V>[] table;
     private int size;
 
+    @SuppressWarnings("unchecked")
     public MyHashMap() {
-        table = new Node[16];
+        table = (Node<K, V>[]) new Node[16];
         size = 0;
     }
 
-    private int hash(Object key) {
+    private int hash(K key) {
         return key.hashCode() % table.length;
     }
 
-    public void put(Object key, Object value) {
+    public void put(K key, V value) {
         int index = hash(key);
-        Node current = table[index];
+        Node<K, V> current = table[index];
 
         while (current != null) {
             if (current.key.equals(key)) {
@@ -37,17 +38,16 @@ public class MyHashMap {
             current = current.next;
         }
 
-
-        Node newNode = new Node(key, value);
+        Node<K, V> newNode = new Node<>(key, value);
         newNode.next = table[index];
         table[index] = newNode;
         size++;
     }
 
-    public void remove(Object key) {
+    public void remove(K key) {
         int index = hash(key);
-        Node current = table[index];
-        Node previous = null;
+        Node<K, V> current = table[index];
+        Node<K, V> previous = null;
 
         while (current != null) {
             if (current.key.equals(key)) {
@@ -64,25 +64,25 @@ public class MyHashMap {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public void clear() {
-        table = new Node[16]; // Скидаємо масив
-        size = 0;
+        table = (Node<K, V>[]) new Node[16];
     }
 
     public int size() {
         return size;
     }
 
-    public Object get(Object key) {
+    public V get(K key) {
         int index = hash(key);
-        Node current = table[index];
+        Node<K, V> current = table[index];
 
         while (current != null) {
             if (current.key.equals(key)) {
-                return current.value; // Повертаємо значення
+                return current.value;
             }
             current = current.next;
         }
-        return null; // Якщо ключ не знайдено
+        return null;
     }
 }

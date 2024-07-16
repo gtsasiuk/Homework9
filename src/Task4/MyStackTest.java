@@ -2,7 +2,7 @@ package Task4;
 
 public class MyStackTest {
     public static void main(String[] args) {
-        MyStack stack = new MyStack();
+        MyStack<String> stack = new MyStack<>();
 
         stack.push("One");
         stack.push("Two");
@@ -18,15 +18,16 @@ public class MyStackTest {
 
         System.out.println("Stack size after pop: " + stack.size());
 
-        stack.push(0.25);
-        stack.push(0.5);
+        MyStack<Double> doubleStack = new MyStack<>();
+        doubleStack.push(0.25);
+        doubleStack.push(0.5);
 
-        stack.remove(1); // Видаляє "Element 2"
+        doubleStack.remove(1); // Видаляє 0.5
 
-        System.out.println("Stack size after remove: " + stack.size());
+        System.out.println("Double stack size after remove: " + doubleStack.size());
 
-        for (int i = 0; i < stack.size(); i++) {
-            System.out.println("Element at index " + i + ": " + stack.get(i));
+        for (int i = 0; i < doubleStack.size(); i++) {
+            System.out.println("Element at index " + i + ": " + doubleStack.get(i));
         }
 
         stack.clear();

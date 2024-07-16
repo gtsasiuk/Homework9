@@ -2,7 +2,7 @@ package Task2;
 
 public class MyLinkedListTest {
     public static void main(String[] args) {
-        MyLinkedList list = new MyLinkedList();
+        MyLinkedList<String> list = new MyLinkedList<>();
 
         list.add("Element 1");
         list.add("Element 2");

@@ -1,17 +1,17 @@
 package Task3;
 
-public class MyQueue {
-    private static class Node {
-        Object value;
-        Node next;
+public class MyQueue<T> {
+    private static class Node<T> {
+        T value;
+        Node<T> next;
 
-        Node(Object value) {
+        Node(T value) {
             this.value = value;
         }
     }
 
-    private Node head;
-    private Node tail;
+    private Node<T> head;
+    private Node<T> tail;
     private int size;
 
     public MyQueue() {
@@ -20,8 +20,8 @@ public class MyQueue {
         size = 0;
     }
 
-    public void add(Object value) {
-        Node newNode = new Node(value);
+    public void add(T value) {
+        Node<T> newNode = new Node<>(value);
         if (tail != null) {
             tail.next = newNode;
         }
@@ -42,19 +42,18 @@ public class MyQueue {
         return size;
     }
 
-    public Object peek() {
+    public T peek() {
         if (head == null) {
             throw new IllegalStateException("Queue is empty");
         }
         return head.value;
     }
 
-
-    public Object poll() {
+    public T poll() {
         if (head == null) {
             throw new IllegalStateException("Queue is empty");
         }
-        Object value = head.value;
+        T value = head.value;
         head = head.next;
         if (head == null) {
             tail = null;

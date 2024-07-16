@@ -1,15 +1,15 @@
 package Task4;
 
-public class MyStack {
-    private Object[] array;
+public class MyStack<T> {
+    private T[] array;
     private int size;
 
     public MyStack() {
-        array = new Object[10];
+        array = (T[]) new Object[10];
         size = 0;
     }
 
-    public void push(Object value) {
+    public void push(T value) {
         if (size == array.length) {
             resizeArray();
         }
@@ -39,18 +39,18 @@ public class MyStack {
         return size;
     }
 
-    public Object peek() {
+    public T peek() {
         if (size == 0) {
             throw new IllegalStateException("Stack is empty");
         }
         return array[size - 1];
     }
 
-    public Object pop() {
+    public T pop() {
         if (size == 0) {
             throw new IllegalStateException("Stack is empty");
         }
-        Object value = array[size - 1];
+        T value = array[size - 1];
         array[size - 1] = null;
         size--;
         return value;
@@ -58,14 +58,14 @@ public class MyStack {
 
     private void resizeArray() {
         int newSize = array.length * 2;
-        Object[] newArray = new Object[newSize];
+        T[] newArray = (T[]) new Object[newSize];
         for (int i = 0; i < size; i++) {
             newArray[i] = array[i];
         }
         array = newArray;
     }
 
-    public Object get(int index) {
+    public T get(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Invalid index: " + index);
         }
